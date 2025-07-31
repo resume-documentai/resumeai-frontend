@@ -45,6 +45,9 @@ const Upload = () => {
                 const response = await axios.post("api/resumes/upload", formData, {
                     headers: { "Content-Type": "multipart/form-data" },
                 });
+                
+                // TODO: change this to new json format
+
                 setResumeText(response.data.extracted_text); // Set extracted text to state
                 setResumeFeedback(response.data.llm_feedback); // Set feedback from LLM to state
             } catch (error) {

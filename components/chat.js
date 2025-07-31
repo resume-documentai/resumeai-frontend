@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 
@@ -6,26 +6,23 @@ const Chat = ({ fileId }) => {
     const [question, setQuestion] = useState("");
     const [messages, setMessages] = useState([]);
 
-    const fetchChatHistory = async () => {
+    const fetchChatHistory = useCallback(async () => {
         try {
-            
             const response = await axios.get(`/api/chat/start-chat?file_id=${fileId}`);
             if (response.data === 0) {
                 setMessages((prev) => [...prev, { type: "bot", text: "Hello! How can I help you today?" }]);
             }
-
             setMessages(response.data);
-            
         } catch (error) {
-            console.error("Error fetching chat history:", error)
+            console.error("Error fetching chat history:", error);
         }
-    }
+    }, [fileId]);
 
     useEffect(() => {
         if (!fileId) return;
         fetchChatHistory();
 
-    }, [fileId]);
+    }, [fileId, fetchChatHistory]);
 
     const handleChat = async () => {
         if (!question.trim()) return;
@@ -36,15 +33,18 @@ const Chat = ({ fileId }) => {
         formData.append("file_id", fileId);
         formData.append("message", question);
 
-        const response = await axios.post("/api/chat", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            }
-        });
+        try {
+            const response = await axios.post("/api/chat", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            });
 
-
-        setMessages((prev) => [...prev, { type: "bot", text: response.data.response }]);
-        setQuestion("");
+            setMessages((prev) => [...prev, { type: "bot", text: response.data.response }]);
+            setQuestion("");
+        } catch (error) {
+            console.error("Error sending message:", error);
+        }
     }
 
     return (

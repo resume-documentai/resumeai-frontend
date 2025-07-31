@@ -31,7 +31,7 @@ const ResumeList = () => {
 
     const handleSelectResume = async (resume) => {
         // Retrieve userId from local storage
-        const userId = localStorage.getItem("userId");
+        // const userId = localStorage.getItem("userId");
 
         // Create a FormData object and append user_id and file_id
         const formData = new FormData();
@@ -46,6 +46,7 @@ const ResumeList = () => {
             });
 
             // Use the response to set resumeText and resumeFeedback
+            // TODO: fix resume feedback to show new json format
             setSelectedResume(resume);
             setResumeText(response.data.extracted_text);
             setResumeFeedback(response.data.llm_feedback);

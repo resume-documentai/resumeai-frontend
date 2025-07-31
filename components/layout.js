@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
+import Link from "next/link";
 
 const Layout = ({ children }) => {
     const { user, logout } = useAuth();
@@ -9,21 +10,21 @@ const Layout = ({ children }) => {
             <header className="bg-white shadow-md flex-shrink-0">
                 <div className="mx-auto flex items-center justify-between p-4">
                     <h1 className="text-3xl font-bold text-gray-900 flex-grow-0">
-                        <a href="/" className="hover:text-blue-500">Resume Reviewer</a>
+                        <Link href="/" className="hover:text-blue-500">Resume Reviewer</Link>
                     </h1>
                     <nav className="flex-grow">
                         <ul className="flex justify-end space-x-6 items-center">
                             <li>
-                                <a href="/" className="text-gray-700 hover:text-blue-500">Home</a>
+                                <Link href="/" className="text-gray-700 hover:text-blue-500">Home</Link>
                             </li>
                             <li>
-                                <a href="/upload" className="text-gray-700 hover:text-blue-500">Upload</a>
+                                <Link href="/upload" className="text-gray-700 hover:text-blue-500">Upload</Link>
                             </li>
                             <li className="border-l border-gray-300 h-6 mx-2"></li>
                             {user ? (
                                 <>
                                     <li>
-                                        <a href="/resume_list" className="text-gray-700 hover:text-blue-500">My Resumes</a>
+                                        <Link href="/resume_list" className="text-gray-700 hover:text-blue-500">My Resumes</Link>
                                     </li>
                                     <li className="text-gray-700">Welcome, <strong>{user}</strong></li>
                                     <li>
@@ -37,7 +38,7 @@ const Layout = ({ children }) => {
                                 </>
                             ) : (
                                 <li>
-                                    <a href="/login" className="text-gray-700 hover:text-blue-500">Login</a>
+                                    <Link href="/login" className="text-gray-700 hover:text-blue-500">Login</Link>
                                 </li>
                             )}
                         </ul>

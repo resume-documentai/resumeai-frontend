@@ -1,8 +1,9 @@
 import React from "react";
 import Layout from "../components/layout";
 import { useAuth } from "../context/AuthContext";
+import Link from "next/link";
 
-const Home = () => {
+const Home = () => {    
     const { user } = useAuth();
 
     return (
@@ -12,11 +13,11 @@ const Home = () => {
                 <p className="text-lg text-center">Upload your resume to get a detailed review and feedback or login to see a previously analyzed resume.</p>
                 <div className="w-full mt-4 flex justify-center space-x-6">
                     {user ? (
-                        <a href="/resume_list" className="w-1/3 p-2 bg-blue-500 text-white text-center rounded">Resume List</a>
+                        <Link href="/resume_list" className="w-1/3 p-2 bg-blue-500 text-white text-center rounded">Resume List</Link>
                     ) : (
-                        <a href="/login" className="w-1/3 p-2 bg-blue-500 text-white text-center rounded">Login</a>
+                        <Link href="/login" className="w-1/3 p-2 bg-blue-500 text-white text-center rounded">Login</Link>
                     )}
-                    <a href="/upload" className="w-1/3 p-2 bg-blue-500 text-white text-center rounded">Upload Resume</a>
+                    <Link href="/upload" className="w-1/3 p-2 bg-blue-500 text-white text-center rounded">Upload Resume</Link>
                 </div>
             </div>
         </Layout>
