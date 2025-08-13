@@ -6,27 +6,27 @@ const Layout = ({ children }) => {
     const { user, logout } = useAuth();
 
     return (
-        <div className="flex flex-col h-screen">
-            <header className="bg-white shadow-md flex-shrink-0">
+        <div className="flex flex-col min-h-screen">
+            <header className="bg-gray-600 shadow-md flex-shrink-0">
                 <div className="mx-auto flex items-center justify-between p-4">
-                    <h1 className="text-3xl font-bold text-gray-900 flex-grow-0">
-                        <Link href="/" className="hover:text-blue-500">Resume Reviewer</Link>
+                    <h1 className="text-3xl font-bold text-gray-400 flex-grow-0">
+                        <Link href="/" className="hover:text-blue-200">Resume Reviewer</Link>
                     </h1>
                     <nav className="flex-grow">
                         <ul className="flex justify-end space-x-6 items-center">
                             <li>
-                                <Link href="/" className="text-gray-700 hover:text-blue-500">Home</Link>
+                                <Link href="/" className="text-gray-200 hover:text-blue-200">Home</Link>
                             </li>
                             <li>
-                                <Link href="/upload" className="text-gray-700 hover:text-blue-500">Upload</Link>
+                                <Link href="/upload" className="text-gray-200 hover:text-blue-200">Upload</Link>
                             </li>
                             <li className="border-l border-gray-300 h-6 mx-2"></li>
                             {user ? (
                                 <>
                                     <li>
-                                        <Link href="/resume_list" className="text-gray-700 hover:text-blue-500">My Resumes</Link>
+                                        <Link href="/resume_list" className="text-gray-200 hover:text-blue-200">My Resumes</Link>
                                     </li>
-                                    <li className="text-gray-700">Welcome, <strong>{user}</strong></li>
+                                    <li className="text-gray-200">Welcome, <strong>{user}</strong></li>
                                     <li>
                                         <button
                                             onClick={logout}
@@ -38,17 +38,17 @@ const Layout = ({ children }) => {
                                 </>
                             ) : (
                                 <li>
-                                    <Link href="/login" className="text-gray-700 hover:text-blue-500">Login</Link>
+                                    <Link href="/login" className="text-gray-200 hover:text-blue-200">Login</Link>
                                 </li>
                             )}
                         </ul>
                     </nav>
                 </div>
             </header>
-            <main className="flex-grow overflow-auto">
+            <main className="flex-grow overflow-auto bg-gray-900">
                 {children}
             </main>
-            <footer className="bg-white shadow-md flex-shrink-0 p-1 text-right">
+            <footer className="bg-gray-600 shadow-md p-1 text-right mt-auto text-gray-200">
                 <p>&copy; 2025 Ashwin </p>
             </footer>
         </div>

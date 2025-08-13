@@ -18,7 +18,10 @@ const ResumeList = () => {
 
         try {
             // Include userId as a query parameter in the request URL
-            const response = await axios.get(`/api/resumes?user_id=${userId}`);
+            const response = await axios.get('/api/resumes/', {
+                params: {user_id: userId}
+            });
+
             setResumes(response.data);
         } catch (error) {
             console.error("Error fetching resumes:", error);

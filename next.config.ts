@@ -5,9 +5,14 @@ const nextConfig: NextConfig = {
     async rewrites() {
       return [
         {
+          source:"/api/resumes",
+          destination: process.env.BACKEND_URL + "/resumes/"
+        },
+        {
           source: "/api/:path*",
           destination: process.env.BACKEND_URL + "/:path*"
         }
+
       ]
     }
 };

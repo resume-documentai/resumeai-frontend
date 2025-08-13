@@ -17,14 +17,16 @@ const Login = () => {
                 setMessage("Registration successful. Please log in.");
                 setIsRegister(false);
             } else {
-                const response = await login({ email, password });
+                const response = await login({ username_or_email: email, password });
                 setMessage(`Welcome, ${response.user.username}!`);
+
+                window.location.href = "/";
             }
         } catch (error) {
             if (error.response && error.response.data) {
                 setMessage(error.response.data.detail || "An error occurred.");
             } else {
-                setMessage("An error occurred. Please try again:" + error.message);
+                setMessage("An error occurred. Please try again: " + error.message);
             }
             
         }
