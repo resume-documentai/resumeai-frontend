@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
 
     return (
         <div className="flex flex-col min-h-screen">
-            <header className="bg-gray-600 shadow-md flex-shrink-0">
+            <header className="bg-gray-600 shadow-md flex-shrink-0 h-18">
                 <div className="mx-auto flex items-center justify-between p-4">
                     <h1 className="text-3xl font-bold text-gray-400 flex-grow-0">
                         <Link href="/" className="hover:text-blue-200">Resume Reviewer</Link>
@@ -48,7 +48,7 @@ const Layout = ({ children }) => {
             <main className="flex-grow overflow-auto bg-gray-900">
                 {children}
             </main>
-            <footer className="bg-gray-600 shadow-md p-1 text-right mt-auto text-gray-200">
+            <footer className="bg-gray-600 shadow-md p-1 text-right mt-auto text-gray-200 h-8">
                 <p>&copy; 2025 Ashwin </p>
             </footer>
         </div>

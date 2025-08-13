@@ -49,8 +49,6 @@ const Upload = () => {
                     headers: { "Content-Type": "multipart/form-data" },
                 });
                 
-                // TODO: change this to new json format
-
                 setResumeText(response.data.extracted_text); // Set extracted text to state
                 setResumeFeedback(response.data.feedback); // Set feedback from LLM to state
             } catch (error) {
@@ -61,7 +59,7 @@ const Upload = () => {
 
     return (
         <Layout>
-            <div className="h-full flex flex-col items-center justify-center p-4">
+            <div className="h-full flex flex-col items-center justify-center p-4" style={{minHeight: `calc(100vh - 56px - 128px)`}}>
                 <div className="p-6 bg-gray-300 rounded-lg shadow-lg w-96 text-center">
                     <h2 className="text-xl font-bold mb-4 text-gray-700">Upload Your Resume</h2>
                     <div {...getRootProps()} className="border-2 border-dashed border-gray-400 p-6 cursor-pointer mb-4 ">
