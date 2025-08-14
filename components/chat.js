@@ -48,31 +48,32 @@ const Chat = ({ fileId }) => {
     }
 
     return (
-        <div className='flex flex-col p-4 bg-gray-100 h-full w-1/4 shadow-md'>
-            <h2 className='text-lg font-bold  flex-shrink-0'>Chat with Your Document</h2>
-            <hr className='my-2 border-1' />
+        <div className='sticky top-0 flex flex-col p-4 bg-gray-700 min-h-full shadow-md'>
+            <h2 className='text-lg font-bold text-gray-200 flex-shrink-0 mb-2'>Chat with Your Document</h2>
 
-            <div className='flex-grow overflow-y-auto bg-gray-300 border p-2 rounded'>
-                {messages.map((message, index) => (
+            <div className='bg-gray-300 border p-2 rounded max-h-full min-h-0 overflow-y-auto'>
+                <div className='overflow-y-auto' style={{ maxHeight: 'calc(70vh)' }}>
+                    {messages.map((message, index) => (
                     <div
                         key={index}
-                        className={`p-2 my-1 rounded ${message.type === 'user' ? 'bg-blue-100 text-right' : 'bg-gray-200 text-left'
+                        className={`p-2 my-1 rounded text-sm ${message.type === 'user' ? 'bg-blue-100 text-right' : 'bg-gray-200 text-left'
                             }`}
                     >
                         {message.type === 'bot' ? (
-                            <ReactMarkdown className="prose">{message.text}</ReactMarkdown>
+                            <ReactMarkdown className="text-sm prose">{message.text}</ReactMarkdown>
                         ) : (
                             message.text
                         )}
                     </div>
                 ))}
+                </div>
             </div>
-            <div className='flex flex-shrink-0 border p-1'>
+            <div className='flex flex-shrink-0 rounded p-1 mt-2'>
                 <input
                     type='text'
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
-                    className='border p-2 flex-1'
+                    className='rounded border p-2 flex-1 text-gray-200'
                 />
                 <button
                     onClick={handleChat}
