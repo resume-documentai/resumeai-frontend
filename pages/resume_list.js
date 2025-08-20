@@ -82,7 +82,7 @@ const ResumeList = () => {
         <Layout>
             <div className="h-full" style={{minHeight: `calc(100vh - 100px)`}}>
                 {/* Desktop / tablet: two sidebars */}
-                <div className="hidden md:grid md:grid-cols-[280px_1fr_360px] ">
+                <div className="hidden md:grid md:grid-cols-[280px_1fr] ">
                     {/* Resume List - Left Sidebar */}
                     <aside className=" bg-gray-700 text-gray-100 shadow">
                         <div className="sticky top-0 h-full bg-gray-700 p-4 shadow-md">
@@ -119,9 +119,9 @@ const ResumeList = () => {
                         )}
                     </section>  
                     {/* Chat - Right Sidebar */}
-                    <aside className="bg-gray-700 shadow ">
+                    {/* <aside className="bg-gray-700 shadow ">
                         <Chat fileId={selectedResume?.file_id} />
-                    </aside>
+                    </aside> */}
                 </div>
 
                 {/* Mobile: tabs + animated panel */}
@@ -134,17 +134,17 @@ const ResumeList = () => {
                     >
                         <button
                             role="tab"
-                            aria-selected={active === "resumes"}
+                            aria-selected={true}
                             onClick={() => toggleTab("resumes")}
-                            className={`flex-1 rounded-lg px-3 py-2 transition ${
+                            className={`flex-1 rounded-lg px-3 py-2 transition font-bold ${
                                 active === "resumes"
                                 ? "bg-gray-500 shadow text-gray-200"
-                                : "text-gray-200 hover:text-gray-800"
+                                : "text-gray-200 hover:text-gray-400"
                             }`}
                         >
                             Resumes
                         </button>
-                        <div className="self-center text-gray-400 px-1">|</div>
+                        {/* <div className="self-center text-gray-400 px-1">|</div>
                         <button
                             role="tab"
                             aria-selected={active === "chat"}
@@ -156,7 +156,7 @@ const ResumeList = () => {
                             }`}
                         >
                             Chat
-                        </button>
+                        </button> */}
                     </div>
                 
 
@@ -166,56 +166,35 @@ const ResumeList = () => {
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={active + String(!!selectedResume)}
-                            initial={{ scaleX: 0.001, opacity: 0 }}
-                            animate={{ scaleX: 1, opacity: 1 }}
-                            exit={{ scaleX: 0.001, opacity: 0 }}
+                            initial={{ scaleY: 0.001, opacity: 0 }}
+                            animate={{ scaleY: 1, opacity: 1 }}
+                            exit={{ scaleY: 0.001, opacity: 0 }}
                             transition={{ duration: 0.25, ease: "easeOut" }}
-                            style={{ transformOrigin: origin }}
+                            style={{ transformOrigin: origin === "left" ? "top" : "bottom" }}
                             >
                         {active == "resumes" ? (
-                            <div className="p-4">
-                                {/* <aside className=" bg-gray-700 text-gray-100 shadow">
-                                    <div className="sticky top-0 h-full bg-gray-700 p-4 shadow-md">
-                                        <h2 className="text-lg font-bold mb-4 text-gray-200">Resumes</h2>
-                                        {resumes.length > 0 ? (
-                                            <ul>
-                                                {resumes.map((resume) => (
-                                                    <li
-                                                        key={resume.file_id}
-                                                        className={`p-2 cursor-pointer ${selectedResume?.file_id === resume.file_id ? "bg-blue-300 rounded-full text-gray-700" : "hover:bg-gray-800 rounded-full text-gray-200"}`}
-                                                        onClick={() => handleSelectResume(resume)}
-                                                    >
-                                                        {resume.file_name.replace(/\.[^.]+$/, '')}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            <p className="text-center text-gray-500">No resumes found.</p>
-                                        )}
-                                    </div>
-                                </aside> */}
-                            <h2 className="text-base font-semibold text-gray-200 mb-2">Resumes</h2>
-                            <hr className="border border-gray-600 mx-4 mb-2" />
-                            {resumes.length > 0 ? (
-                                <ul className="space-y-1">
-                                {resumes.map((resume) => (
-                                    <li
-                                    key={resume.file_id}
-                                    className={`p-2 cursor-pointer ${
-                                        selectedResume?.file_id === resume.file_id
-                                        ? "bg-blue-300 rounded-full text-gray-700"
-                                        : "hover:bg-gray-800 rounded-full text-gray-200"
-                                    }`}
-                                    onClick={() => handleSelectResume(resume)}
-                                    >
-                                    {resume.file_name.replace(/\.[^.]+$/, "")}
-                                </li>
-                                ))}
-                            </ul>
-                            ) : (
-                                <p className="text-center text-gray-500">No resumes found.</p>
-                            )}
-                        </div>
+                            <div className="px-4">
+                                <hr className="border border-gray-600 mb-2" />
+                                {resumes.length > 0 ? (
+                                    <ul className="space-y-1">
+                                    {resumes.map((resume) => (
+                                        <li
+                                        key={resume.file_id}
+                                        className={`p-2 cursor-pointer ${
+                                            selectedResume?.file_id === resume.file_id
+                                            ? "bg-blue-300 rounded-full text-gray-700"
+                                            : "hover:bg-gray-800 rounded-full text-gray-200"
+                                        }`}
+                                        onClick={() => handleSelectResume(resume)}
+                                        >
+                                        {resume.file_name.replace(/\.[^.]+$/, "")}
+                                    </li>
+                                    ))}
+                                </ul>
+                                ) : (
+                                    <p className="text-center text-gray-500">No resumes found.</p>
+                                )}
+                            </div>
                         ) : (
                             <div className="p-4">
                             {selectedResume ? (

@@ -12,7 +12,7 @@ const ResumeSummary = ({
     setExtractedTextOpen
 }) => {
     return (
-        <div className="h-full">
+        <div className="h-full w-full">
             {/* Resume Title */}
             <div className="flex flex-row items-center justify-between px-4 py-2 mb-2 bg-gray-700 shadow-2xl ">
                 {selectedResumeTitle && (
