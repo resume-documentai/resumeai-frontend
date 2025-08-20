@@ -2,12 +2,12 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      target: dev
     ports:
       - "3000:3000"
     environment:
       - BACKEND_URL=${BACKEND_URL}
-      - NODE_ENV=${NODE_ENV}
+      - NODE_ENV=development
     volumes:
       - .:/app
       - /app/node_modules
