@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+RUN rm -rf .next && npm run build
 
 # Production image
 FROM node:18-alpine AS prod

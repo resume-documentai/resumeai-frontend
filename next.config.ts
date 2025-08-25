@@ -2,6 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+    reactStrictMode: true,
+    swcMinify: true,
+    webpack: (config, { isServer, dev }) => {
+      if (!dev) {
+        config.optimization.minimize = true;
+      }
+      return config;
+    },
+
     async rewrites() {
       return [
         {
