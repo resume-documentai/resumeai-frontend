@@ -1,10 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ReactMarkdown from "react-markdown"
-import remarkGfm from "remark-gfm"
-import remarkBreaks from 'remark-breaks';
 import Layout from '../components/layout';
-import ResumeFeedback from '../components/feedback';
 import ResumeSummary from '../components/resumeSummary';
 import Chat from '../components/chat';
 import { motion, AnimatePresence } from "framer-motion";

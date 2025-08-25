@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback } from "react"
+import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useDropzone } from "react-dropzone"
 import Layout from "../components/layout"
 import ResumeFeedback from "../components/feedback"
 
 const Upload = () => {
-    const [resumeText, setResumeText] = useState("");
+    // const [resumeText, setResumeText] = useState("");
     const [resumeFeedback, setResumeFeedback] = useState("");
     const [modelOption, setModelOption] = useState("openai");
     const [isModelSelectorOpen, setIsModelSelectorOpen] = useState(false);
@@ -46,7 +46,7 @@ const Upload = () => {
                     headers: { "Content-Type": "multipart/form-data" },
                 });
                 
-                setResumeText(response.data.extracted_text); // Set extracted text to state
+                // setResumeText(response.data.extracted_text); // Set extracted text to state
                 setResumeFeedback(response.data.feedback); // Set feedback from LLM to state
             } catch (error) {
                 console.error("Error uploading file:", error); // Handle error
