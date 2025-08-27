@@ -39,7 +39,7 @@ export default function ResumeFeedback({ feedback ,
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                    <div className={`flex items-center justify-center w-10 h-10 rounded-full ${scoreColor}`}>
+                    <div className={`flex items-center justify-center w-8 h-8 rounded-full ${scoreColor}`}>
                         <span className="text-lg font-bold">{score}</span>
                     </div>
                     <h4 className="text-lg font-bold text-left text-gray-300">{title}</h4>
@@ -47,7 +47,7 @@ export default function ResumeFeedback({ feedback ,
                 
                 <div 
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        isOpen ? 'max-h-96' : 'max-h-0'
+                        isOpen ? 'max-h-fit' : 'max-h-0'
                     }`}
                 >
                     <hr className="border border-gray-700 mx-4" />
