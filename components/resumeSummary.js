@@ -58,8 +58,11 @@ const ResumeSummary = ({
                         }`}
                     >
                         
-                        <div className="rounded">
-                            <pre className="p-2 text-sm bg-gray-300 overflow-auto max-h-80 rounded mx-4">{resumeText}</pre>
+                        <div className="rounded mx-4">
+                            <div 
+                                className="p-2 text-sm bg-gray-300 overflow-auto max-h-80 rounded whitespace-pre-wrap"
+                                dangerouslySetInnerHTML={{ __html: resumeText }}
+                            />
                         </div>
                     </div>
                     <hr className="border border-gray-700 mx-4 mb-2 rounded-full" />
@@ -70,7 +73,7 @@ const ResumeSummary = ({
             {/* Resume General Feedback */}
             {resumeGeneralFeedback && (
                 <div>
-                    <span className="ml-7 px-2 text-xl text-gray-200 text-left text-lrg font-bold mb-2 "> General Feedback</span>
+                    <span className="ml-7 px-2 text-xl text-gray-200 text-left text-lrg font-bold mb-2 "> General Feedback </span>
                     <div className="p-2 text-gray-200 mb-2 mx-4">
                         {resumeGeneralFeedback}
                     </div>
