@@ -10,7 +10,8 @@ const Home = () => {
         <Layout>
             <div className="flex flex-col items-center justify-center p-4" style={{minHeight: `calc(100vh - 100px)`}}>
                 <h1 className="text-3xl font-bold text-gray-200 mb-4">Resume AI</h1>
-                <p className="px-4 text-lg text-center text-gray-200">Analyzes your resume in seconds and receive actionable feedback to help you stand out. Whether you're applying for your first internship or your dream job, we help you highlight what matters.</p>
+                <p className="px-4 text-lg text-center text-gray-200">Analyzes your resume in seconds and receive actionable feedback to help you stand out. 
+                    Whether you&#39;re applying for your first internship or your dream job, we help you highlight what matters.</p>
                 <div className="w-full mt-4 flex justify-center space-x-6">
                     {user ? (
                         <>
