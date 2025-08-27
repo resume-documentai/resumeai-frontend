@@ -15,7 +15,7 @@ export default function ResumeFeedback({ feedback ,
 
     if (!feedback) return null;
 
-    const renderFeedbackSection = (sectionKey, title, isOpen, setIsOpen) => {
+    const renderFeedbackSection = (sectionKey, title, isOpen, setIsOpen, categoryColor) => {
         const section = feedback[sectionKey];
         if (!section) return null;
 
@@ -31,6 +31,7 @@ export default function ResumeFeedback({ feedback ,
                     }}
                     className="flex flex-row items-center justify-start space-x-4 p-2 hover:bg-gray-700 transition-colors rounded"
                 >
+                    {/* Circle for Score */}
                     <svg 
                         className={`w-5 h-5 transform transition-transform ${!isOpen ? 'rotate-180' : ''} text-gray-400`}
                         fill="none" 
@@ -39,15 +40,17 @@ export default function ResumeFeedback({ feedback ,
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                    <div className={`flex items-center justify-center w-10 h-10 rounded-full ${scoreColor}`}>
+                    <div className={`flex items-center justify-center w-8 h-8 rounded-full ${scoreColor}`}>
                         <span className="text-lg font-bold">{score}</span>
                     </div>
                     <h4 className="text-lg font-bold text-left text-gray-300">{title}</h4>
+                    <div className={`h-3 w-3 rounded ${categoryColor}`}></div>
+
                 </button>
                 
                 <div 
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        isOpen ? 'max-h-96' : 'max-h-0'
+                        isOpen ? 'max-h-fit' : 'max-h-0'
                     }`}
                 >
                     <hr className="border border-gray-700 mx-4" />
@@ -117,11 +120,11 @@ export default function ResumeFeedback({ feedback ,
                         }`}
                     >
                         <div className={bodyClassName}>
-                            {renderFeedbackSection('grammar_spelling', 'Grammar & Spelling', isGrammarOpen, setIsGrammarOpen)}
-                            {renderFeedbackSection('clarity_conciseness', 'Clarity & Conciseness', isClarityOpen, setIsClarityOpen)}
-                            {renderFeedbackSection('impact_accomplishments', 'Impact & Accomplishments', isImpactOpen, setIsImpactOpen)}
-                            {renderFeedbackSection('structure_organization', 'Structure & Organization', isStructureOpen, setIsStructureOpen)}
-                            {renderFeedbackSection('ats_readability', 'ATS Readability', isAtsOpen, setIsAtsOpen)}
+                            {renderFeedbackSection('grammar_spelling', 'Grammar & Spelling', isGrammarOpen, setIsGrammarOpen, "bg-red-300")}
+                            {renderFeedbackSection('clarity_conciseness', 'Clarity & Conciseness', isClarityOpen, setIsClarityOpen, "bg-yellow-400")}
+                            {renderFeedbackSection('impact_accomplishments', 'Impact & Accomplishments', isImpactOpen, setIsImpactOpen, "bg-blue-300")}
+                            {renderFeedbackSection('structure_organization', 'Structure & Organization', isStructureOpen, setIsStructureOpen, "bg-green-300")}
+                            {renderFeedbackSection('ats_readability', 'ATS Readability', isAtsOpen, setIsAtsOpen, "bg-purple-300")}
                         </div>
                     </div>
                     <hr className="border border-gray-700 mx-4 mb-2 rounded-full" />
@@ -130,11 +133,11 @@ export default function ResumeFeedback({ feedback ,
                 <>
                     <h1 className={titleClassName}>Feedback</h1>
                     <div className={bodyClassName}>
-                        {renderFeedbackSection('grammar_spelling', 'Grammar & Spelling', isGrammarOpen, setIsGrammarOpen)}
-                        {renderFeedbackSection('clarity_conciseness', 'Clarity & Conciseness', isClarityOpen, setIsClarityOpen)}
-                        {renderFeedbackSection('impact_accomplishments', 'Impact & Accomplishments', isImpactOpen, setIsImpactOpen)}
-                        {renderFeedbackSection('structure_organization', 'Structure & Organization', isStructureOpen, setIsStructureOpen)}
-                        {renderFeedbackSection('ats_readability', 'ATS Readability', isAtsOpen, setIsAtsOpen)}
+                        {renderFeedbackSection('grammar_spelling', 'Grammar & Spelling', isGrammarOpen, setIsGrammarOpen, "bg-red-300")}
+                        {renderFeedbackSection('clarity_conciseness', 'Clarity & Conciseness', isClarityOpen, setIsClarityOpen, "bg-yellow-400")}
+                        {renderFeedbackSection('impact_accomplishments', 'Impact & Accomplishments', isImpactOpen, setIsImpactOpen, "bg-blue-300")}
+                        {renderFeedbackSection('structure_organization', 'Structure & Organization', isStructureOpen, setIsStructureOpen, "bg-green-300")}
+                        {renderFeedbackSection('ats_readability', 'ATS Readability', isAtsOpen, setIsAtsOpen, "bg-purple-300")}
                     </div>
                 </>
             )}
