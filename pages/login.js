@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout';
 import { login, register } from '../utils/auth';
 
@@ -7,11 +7,14 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [isRegister, setIsRegister] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false)
     const [message, setMessage] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            setIsLoading(true)
             if (isRegister) {
                 await register({ username, email, password });
                 setMessage("Registration successful. Please log in.");
@@ -28,7 +31,8 @@ const Login = () => {
             } else {
                 setMessage("An error occurred. Please try again: " + error.message);
             }
-            
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -74,23 +78,37 @@ const Login = () => {
                                 required
                             />
                         </div>
-
-                        <button className="m-4 px-4 py-2 bg-blue-500 text-white rounded-full" type="submit">
-                            {isRegister ? "Register" : "Login"}
-                        </button>
+                        <div className="flex items-center justify-center mt-2">
+                            {isLoading ? (
+                                <div className="animate-spin m-4 rounded-full h-6 w-6 border-b-2 border-gray-700 mb-2"></div>
+                            ) : (
+                                <div className="flex flex-col">
+                                    <button className="m-4 mb-2 px-4 py-2 bg-blue-500 text-white rounded-full" type="submit" disabled={isLoading}>
+                                        {isRegister ? "Register" : "Login"}
+                                    </button>
+                                    <p className="text-gray-700">
+                                        {isRegister ? "Already have an account?" : "Don't have an account?"}
+                                        <button
+                                            className="text-blue-500 ml-2"
+                                            onClick={() => setIsRegister(!isRegister)}
+                                        >
+                                            {isRegister ? "Login" : "Register"}
+                                        </button>
+                                    </p>
+                                </div> 
+                            )}
+                        </div>
                     </form>
 
-                    <p className="text-gray-700">
-                        {isRegister ? "Already have an account?" : "Don't have an account?"}
-                        <button
-                            className="text-blue-500 ml-2"
-                            onClick={() => setIsRegister(!isRegister)}
-                        >
-                            {isRegister ? "Login" : "Register"}
-                        </button>
-                    </p>
-
-                    {message && <p className="mt-4 text-red-500">{message}</p>}
+                    {message &&
+                        <>
+                        {isError ? (
+                            <p className="mt-4 text-red-700">{message}</p>
+                        ) : (
+                            <p className="mt-4 text-green-700">{message}</p>
+                        )}
+                        </>
+                    }
                 </div>
             </div>
         </Layout>
